@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NEW_RELIC_APP_NAME= NEW_RELIC_LICENSE_KEY= node -r newrelic YOUR_MAIN_FILENAME.js"
   },
   "keywords": [],
   "author": "",
