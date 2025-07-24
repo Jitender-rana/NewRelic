@@ -5,7 +5,7 @@
     "networkMode": "bridge",
     "containerDefinitions": [
         {
-            "name": "",
+            "name": "app1",
             "image": "",
             "repositoryCredentials": {
                 "credentialsParameter": ""
