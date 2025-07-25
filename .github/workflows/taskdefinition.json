@@ -1,12 +1,15 @@
 {
   "family": "task1",
-  "networkMode": "awsvpc",
   "executionRoleArn": "arn:aws:iam::390402550922:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "1024",
+  "memory": "3072",
   "containerDefinitions": [
     {
       "name": "app1",
-      "image": "390402550922.dkr.ecr.us-east-1.amazonaws.com/registry1:latest", 
-      "cpu": 0,
+      "image": "390402550922.dkr.ecr.us-east-1.amazonaws.com/registry1:4a26f55bba01a8c56eafa7f4c7f738f6c4d00db3-16517266664",
+      "essential": true,
       "portMappings": [
         {
           "containerPort": 3000,
@@ -16,7 +19,24 @@
           "appProtocol": "http"
         }
       ],
-      "essential": true,
+      "environment": [
+        {
+          "name": "NEW_RELIC_LOG_LEVEL",
+          "value": "info"
+        },
+        {
+          "name": "NEW_RELIC_DISTRIBUTED_TRACING_ENABLED",
+          "value": "true"
+        },
+        {
+          "name": "NEW_RELIC_APP_NAME",
+          "value": "my-node-service"
+        },
+        {
+          "name": "NEW_RELIC_LICENSE_KEY",
+          "value": "eu01xx8c0bbbb3e897648904e8b3dcb1FFFFNRAL"
+        }
+      ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
@@ -27,12 +47,5 @@
         }
       }
     }
-  ],
-  "requiresCompatibilities": ["FARGATE"],
-  "cpu": "1024",
-  "memory": "3072",
-  "runtimePlatform": {
-    "cpuArchitecture": "X86_64",
-    "operatingSystemFamily": "LINUX"
-  }
+  ]
 }
