@@ -1,6 +1,7 @@
 // index.js
-import "newrelic"; // Must be the FIRST import
-import express from "express";
+
+require("newrelic"); // Must be the FIRST import
+const express=require("express");
 const app = express();
 
 
